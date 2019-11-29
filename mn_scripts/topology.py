@@ -35,6 +35,7 @@ from mininet.node import CPULimitedHost
 from mininet.link import TCLink
 from mininet.util import dumpNodeConnections
 from mininet.node import RemoteController
+from mininet.node import OVSKernelSwitch
 from mininet.log import setLogLevel
 
 class CreateTopo( Topo ):
