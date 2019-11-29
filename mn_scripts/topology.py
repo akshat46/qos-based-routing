@@ -28,6 +28,7 @@
 
 #!/usr/bin/python
 
+import sys
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.node import CPULimitedHost
@@ -61,9 +62,12 @@ class CreateTopo( Topo ):
 
 def perfTest():
     "Create network and run simple performance test"
+    IP = sys.argv[1]
     topo = CreateTopo( n=4 )
-    net = Mininet( topo=topo,
-               host=CPULimitedHost, link=TCLink )
+    net = Mininet( topo=topo, controller=RemoteController, switch=OVSKernelSwitch)
+    c1 = net.addController('c1', controller=RemoteController, 
+                           ip=IP, port=6653)
+    c1.start()
     net.start()
     print "Dumping host connections"
     dumpNodeConnections( net.hosts )
@@ -72,7 +76,7 @@ def perfTest():
     # print "Testing bandwidth between h1 and h4"
     # h1, h4 = net.get( 'h1', 'h4' )
     # net.iperf( (h1, h4) )
-    net.stop()
+    # net.stop()
 
 if __name__ == '__main__':
     setLogLevel( 'info' )
