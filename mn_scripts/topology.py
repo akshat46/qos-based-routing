@@ -46,9 +46,9 @@ class CreateTopo( Topo ):
         s3 = self.addSwitch('s3', ip='10.0.0.3')
         s4 = self.addSwitch('s4', ip='10.0.0.4')
         h11 = self.addHost('h11', ip='10.0.0.11')
-        h21 = self.addHost('h21', ip='10.0.0.12')
-        h31 = self.addHost('h31', ip='10.0.0.13')
-        h41 = self.addHost('h41', ip='10.0.0.14')
+        h21 = self.addHost('h21', ip='10.0.0.21')
+        h31 = self.addHost('h31', ip='10.0.0.31')
+        h41 = self.addHost('h41', ip='10.0.0.41')
         
         self.addLink(h11, s1)
         self.addLink(h21, s2)
