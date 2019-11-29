@@ -65,7 +65,7 @@ class CreateTopo( Topo ):
 def perfTest():
     "Create network and run simple performance test"
     IP = sys.argv[1]
-    print "Ip of the controller is: " IP
+    print "Ip of the controller is: " + IP
     topo = CreateTopo( n=4 )
     net = Mininet( topo=topo, controller=RemoteController, switch=OVSKernelSwitch)
     c1 = net.addController('c1', controller=RemoteController, 
