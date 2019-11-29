@@ -38,32 +38,32 @@ from mininet.log import setLogLevel
 class CreateTopo( Topo ):
     "Single switch connected to n hosts."
     def build( self, n=4 ):
-		s1 = self.addSwitch('s1', ip='10.0.1.1')
-		s2 = self.addSwitch('s2', ip='10.0.2.1')
-		s3 = self.addSwitch('s3', ip='10.0.3.1')
-		s4 = self.addSwitch('s4', ip='10.0.4.1')
-		h11 = self.addHost('h11', ip='10.0.1.10')
-		h21 = self.addHost('h21', ip='10.0.2.10')
-		h31 = self.addHost('h31', ip='10.0.3.10')
-		h41 = self.addHost('h41', ip='10.0.4.10')
-		
-		self.addLink(h11, s1)
-		self.addLink(h21, s2)
-		self.addLink(h31, s3)
-		self.addLink(h41, s4)
+        s1 = self.addSwitch('s1', ip='10.0.1.1')
+        s2 = self.addSwitch('s2', ip='10.0.2.1')
+        s3 = self.addSwitch('s3', ip='10.0.3.1')
+        s4 = self.addSwitch('s4', ip='10.0.4.1')
+        h11 = self.addHost('h11', ip='10.0.1.10')
+        h21 = self.addHost('h21', ip='10.0.2.10')
+        h31 = self.addHost('h31', ip='10.0.3.10')
+        h41 = self.addHost('h41', ip='10.0.4.10')
+        
+        self.addLink(h11, s1)
+        self.addLink(h21, s2)
+        self.addLink(h31, s3)
+        self.addLink(h41, s4)
 
-		self.addLink(s1, s2)
-		self.addLink(s1, s3)
-		self.addLink(s1, s4)
-		self.addLink(s2, s3)
-		self.addLink(s2, s4)
-		self.addLink(s3, s4)
+        self.addLink(s1, s2)
+        self.addLink(s1, s3)
+        self.addLink(s1, s4)
+        self.addLink(s2, s3)
+        self.addLink(s2, s4)
+        self.addLink(s3, s4)
 
 def perfTest():
     "Create network and run simple performance test"
     topo = CreateTopo( n=4 )
     net = Mininet( topo=topo,
-	           host=CPULimitedHost, link=TCLink )
+               host=CPULimitedHost, link=TCLink )
     net.start()
     print "Dumping host connections"
     dumpNodeConnections( net.hosts )
