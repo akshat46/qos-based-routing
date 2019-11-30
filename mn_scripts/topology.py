@@ -62,14 +62,24 @@ class CreateTopo( Topo ):
         self.addLink(s2, s4)
         self.addLink(s3, s4)
 
+#To enable the stp setting for the switches of the topology
+def enableSTP(switches):
+	for s in switches:
+		s.cmd("ovs-vsctl set bridge " + s.name + " stp_enable=true")
+
+#To print the stp setting of the switches in the topology
+def printSTPSetting(switches):
+	for s in switches:
+		print(s.cmd("ovs-vsctl get bridge " + s.name + " stp_enable"))
+
 def perfTest():
     "Create network and run simple performance test"
     IP = sys.argv[1]
     print "Ip of the controller is: " + IP
     topo = CreateTopo( n=4 )
-    net = Mininet( topo=topo, controller=RemoteController, switch=OVSKernelSwitch)
-    c1 = net.addController('c1', controller=RemoteController, 
-                           ip=IP, port=6653)
+    net = Mininet( topo=topo, controller=lambda name: RemoteController('c1', ip=IP, port=6633), switch=OVSKernelSwitch)
+    # ~ c1 = net.addController('c1', controller=RemoteController, ip=IP, port=6653)
+    c1 = net.controllers[0]
     c1.start()
     net.start()
     print "Dumping host connections"
