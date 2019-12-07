@@ -49,12 +49,12 @@ class CreateTopo( Topo ):
         h21 = self.addHost('h21', ip='10.0.0.21')
         h31 = self.addHost('h31', ip='10.0.0.31')
         h41 = self.addHost('h41', ip='10.0.0.41')
-        
+        #connecting the hosts to switches
         self.addLink(h11, s1)
         self.addLink(h21, s2)
         self.addLink(h31, s3)
         self.addLink(h41, s4)
-
+		#connecting the switches to each other
         self.addLink(s1, s2)
         self.addLink(s1, s3)
         self.addLink(s1, s4)
